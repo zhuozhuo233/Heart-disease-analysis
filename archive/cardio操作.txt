@@ -1,0 +1,164 @@
+create table cardio(
+id string, 
+age int,
+gender int,
+height int,
+weight float,
+ap_hi int,
+ap_lo int,
+cholesterol int,
+gluc int,
+smoke int,
+alco int,
+active int,
+cardio string)
+row format delimited fields terminated by ',';
+
+create table cardio2(
+id string, 
+age int,
+gender int,
+height int,
+weight float,
+ap_hi int,
+ap_lo int,
+cholesterol int,
+gluc int,
+smoke int,
+alco int,
+active int,
+cardio string,
+bmi string)
+row format delimited fields terminated by ',';
+
+create table cardio3(
+id string, 
+age int,
+gender int,
+height int,
+weight float,
+ap_hi int,
+ap_lo int,
+cholesterol int,
+gluc int,
+smoke int,
+alco int,
+active int,
+cardio string,
+bmi int)
+row format delimited fields terminated by ',';
+
+hive> load data local inpath '/opt/cardio_train.csv' overwrite into table cardio;
+hive> load data local inpath '/opt/cardio_bmi.csv' overwrite into table cardio2;
+hive> load data local inpath '/opt/cardio_bmi1.csv' overwrite into table cardio3;
+
+select * from cardio2 limit 10;
+
+spark-submit --master spark://master:7077 --class test.partition /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.ageprocess /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.hobbys /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.exam /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.ap /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.bmi /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.bmi /opt/cardio.jar
+spark-submit --master spark://master:7077 --class test.ifcardio /opt/cardio.jar
+
+
++-------+
+|max_age|
++-------+
+|     66|
++-------+
+
++---+
+|mix|
++---+
+| 30|
++---+
+
+
+30到35岁比率：
+0%
+36到40岁比率：
+2%
+41到45岁比率：
+12%
+46到50岁比率：
+14%
+51到55岁比率：
+26%
+56到60岁比率：
+23%
+60到65岁比率：
+21%
+
+心脏病患者中有吸烟习惯的比例:
+9%
+心脏病患者中有饮酒习惯的比例:
+5%
+心脏病患者中有锻炼习惯的比例:
+80%
+
+(成人合适水平：2.83~5.20mmol/L(110~200mg/dl)
+临界值：5.17~6.45mmol/L(200~250mg/dl)
+高胆固醇血症：>6.45mmol/L(>250mg/dl))
+
+心脏病患者中胆固醇数值等于正常的比例:
+75%
+心脏病患者中胆固醇数值高于正常的比例:
+14%
+心脏病患者中胆固醇数值远高于正常的比例:
+12%
+
+
+(空腹全血血糖为3.9～6.1毫摩尔/升(70～110毫克/分升)
+空腹全血血糖为6.2～6.6毫摩尔/升
+空腹全血血糖≥6.7毫摩尔/升(120毫克/分升))
+
+心脏病患者中胆固醇数值等于正常的比例:
+85%
+心脏病患者中胆固醇数值高于正常的比例:
+7%
+心脏病患者中胆固醇数值远高于正常的比例:
+8%
+
+(收缩压的正常值是90到140mmHg
+舒张压的正常值是60到90mmHg)
+
+心脏病患者中收缩压正常的比率:
+85%
+心脏病患者中舒张压正常的比率:
+2%
+收缩压在100~110mmHg：
+16%
+收缩压在110~120mmHg：
+40%
+收缩压在120~130mmHg：
+14%
+收缩压在130~140mmHg：
+14%
+收缩压在140~150mmHg：
+7%
+收缩压在150~160mmHg：
+5%
+收缩压在160~170mmHg：
+1%
+收缩压在170~180mmHg：
+1%
+收缩压在180~190mmHg：
+0%
+收缩压在190~200mmHg：
+0%
+舒张压在60~70mmHg：
+19%
+舒张压在70~80mmHg：
+51%
+舒张压在80~90mmHg：
+21%
+舒张压在90~100mmHg：
+6%
+舒张压在100~110mmHg：
+1%
+舒张压在110~120mmHg：
+0%
+
