@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 100px;
+            border: solid 1px #90b;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击发送请求</button>
+    <div id="result"></div>
+    <script>
+        // 获取button元素
+        const btn = document.getElementsByTagName('button')[0];
+        btn.onclick = function () {
+            // 1.创建对象
+            const xhr = new XMLHttpRequest();
+            // 初始化
+            xhr.open('GET', 'http://127.0.0.1:8001/server');
+            // 发送
+            function readTextFile(file, callback) {
+                xhr.overrideMimeType("data.json");
+                xhr.open("GET", file, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status == "200") {
+                        callback(xhr.responseText);
+                    }
+                }
+                xhr.send();
+            }
+            readTextFile("C:/Users/Grooovy/Desktop/代码/test/NewAjax/data.json", function (text) {
+                var data = JSON.parse(text);
+                console.log(data);
+            });
+            //处理服务端返回的结果
+            // readstate是xhr对象中的属性 表示状态
+            // 分别是 0 1 2 3 4
+            xhr.onreadystatechange = function () {
+                // 判断 服务端返回了所有的结果
+                if (xhr.readyState === 4) {
+                    // 判断响应判断码
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 处理结果
+                        // console.log(xhr.status);//状态码
+                        // console.log(xhr.statusText)//状态字符串
+                        // console.log(xhr.getAllResponseHeaders());
+                        // console.log(xhr.response);
+
+                        // 设置result的文本
+                        result.innerHTML = xhr.response;
+                    } else {
+
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

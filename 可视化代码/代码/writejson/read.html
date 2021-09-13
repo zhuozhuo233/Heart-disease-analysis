@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js如何读取json文件</title>
+    <script>
+        window.onload = function () {
+            var url = "person.json"
+            var request = new XMLHttpRequest();
+            request.open("get", url);
+            request.send(null);
+            request.onload = function () {
+                if (request.status == 200) {
+                    var json = JSON.parse(request.responseText);
+                    //console.log(json);
+                    var ol = document.getElementById('ol');
+                    
+                    json.person.map(person => {
+                        var li = document.createElement("li");
+                        
+                        li.innerHTML = `${person.age} ${person.cp}`;
+                        ol.append(li);
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <ol id="ol"></div>
+</body>
+</html>

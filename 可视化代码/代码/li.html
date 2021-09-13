@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<script>
+    //方法一
+    function ajax_test() {
+        $.ajax({
+            url: "ceshi.json", //json文件位置
+            type: "GET", //请求方式为get
+            dataType: "json", //返回数据格式为json
+            success: function(data) { //请求成功完成后要执行的方法 
+                alert(data.first[0].name);
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.first, function(i, item) {
+                    var str = '<div>姓名:' + item.name + '性别：' + item.sex + '</div>';
+                    document.write(str);
+                })
+            }
+        })
+    }
+    ajax_test(); //执行函数
+
+    //方法二:
+    //jQuery.getJSON()是jQuery.ajax()函数的简写形式.
+    // jQuery.getJSON( url [, data ] [, success ] )
+    $.getJSON("ceshi.json", "", function(data) {　 //each循环 使用$.each方法遍历返回的数据date
+        $.each(data.first, function(i, item) {
+            var str = '<br/><div>姓名:' + item.name + '性别：' + item.sex + '</div>';
+            document.write(str);
+        })
+    });
+    </script>
+
+    <title>ajax获取json测试</title>
+    </head>
+    
+    <body>
+        测试aaa
+    </body>
+
+    </html>	

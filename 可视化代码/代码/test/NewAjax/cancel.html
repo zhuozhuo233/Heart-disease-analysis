@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>取消请求</title>
+</head>
+<body>
+
+    <button>点击发送</button>
+    <button>点击取消</button>
+    <script>
+        //获取元素对象
+        const btns = document.querySelectorAll('button');
+        const x = new XMLHttpRequest();
+        btns[0].onclick=function(){
+            
+            x.open("GET",'http://127.0.0.1:8001/delay');
+            x.send();
+        }
+
+        // abort取消发送
+        btns[1].onclick=function(){
+            x.abort();
+        }
+    </script>
+</body>
+</html>

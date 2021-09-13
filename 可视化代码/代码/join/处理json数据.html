@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        //创建ajax对象
+        var xhr = new XMLHttpRequest();
+
+        //告诉ajax要向哪儿发送请求
+        //请求方式 请求地址
+        xhr.open('get', 'http://localhost:3000/responDate')
+
+        //发送请求
+        xhr.send()
+
+        //获取服务器响应数据
+        xhr.onload = function () {
+            //获取响应数据
+            console.log(xhr.responseText)
+        }
+
+    </script>
+
+</body>
+
+</html>

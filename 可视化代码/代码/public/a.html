@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+    <!-- <div>
+        <form action="/users" method="POST">
+            <p>
+                <label for="id">id</label> <input type="text" required name="id" id="id" value="1">
+            </p>
+
+            <p>
+                <label for="name">姓名<input type="text" required name="name" id="name" value="程杨">
+            </p>
+
+            <p>
+                <label for="password">密码<input type="text" required name="password" id="password" value="123">
+            </p>
+
+            <p>
+                <label for="address">地址<input type="text" required name="address" id="address" value="重庆">
+            </p>
+
+            <p>
+                <label for="phone">电话<input type="text" required name="phone" id="phone" value="123">
+            </p>
+
+            <input type="button" value="提交">
+        </form>
+    </div> -->
+
+    <div>
+        <input type="button" onClick="test()" value="显示">
+    </div>
+
+    <!-- <div>
+        <table>
+            <td>
+                <tr>id</tr>
+                <tr>name</tr>
+                <tr>password</tr>
+                <tr>address</tr>
+                <tr>phone</tr>
+            </td>
+        </table>
+    </div> -->
+
+    <script text="javascript">
+        function test() {
+            const xhr = new XMLHttpRequest();
+            // 设置响应体数据的类型
+            xhr.responseType = 'json';
+            xhr.open('GET', '/users');
+            //发送
+            xhr.send();
+            // 事件绑定
+            xhr.onreadystatechange = function () {
+                // 判断 服务端返回了所有的结果
+                if (xhr.readyState === 4) {
+                    // 判断响应判断码
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        result.innerHTML = xhr.response.smoke;
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
